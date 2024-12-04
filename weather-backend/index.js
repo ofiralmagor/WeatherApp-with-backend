@@ -3,7 +3,12 @@ const cors = require('cors');// מידל וור שמאפשר גישה ממקור
 require('dotenv').config(); //מאפשר לגשת לקובץ .env ולהשתמש במידע בו
 const app = express();
 
-app.use(cors()); // מאפשר לכל הדומיינים לגשת לשרת כברירת מחדל.
+const corsOptions = {
+    origin: 'https://weatherappnew-bh46.onrender.com', 
+};
+
+app.use(cors(corsOptions));
+ // מאפשר לכל הדומיינים לגשת לשרת כברירת מחדל.
 
 
 const apiKey = process.env.VITE_API_KEY; // טוען את ה API key מהקובץ .env
