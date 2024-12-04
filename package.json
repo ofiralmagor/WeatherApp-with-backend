@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "start": "node weather-backend/index.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
