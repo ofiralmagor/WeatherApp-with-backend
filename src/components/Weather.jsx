@@ -20,7 +20,7 @@ const Weather = () => {
     useEffect(() => {
         const fetchApiKey = async () => {
             try {
-                const response = await axios.get('https://weatherappnew-bh46.onrender.com/api/key'); // שליחת בקשה לשרת 
+                const response = await axios.get('http://localhost:3000/api/key'); // שליחת בקשה לשרת 
                 setApiKey(response.data.apiKey); // אחסון ה-API Key
             } catch (err) {
                 console.error('Error fetching API Key:', err);
