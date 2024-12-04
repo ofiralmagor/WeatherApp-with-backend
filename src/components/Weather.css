@@ -1,0 +1,126 @@
+.today-container {
+    background-color: #AFD3E2; 
+    color: black;
+    padding: 15px;
+    border-radius: 8px; 
+    margin-bottom: 10px; 
+    margin-top: 70px; 
+}
+
+.today-container i {
+    font-size: 20px; 
+    font-weight: bold; 
+    display: block; 
+    margin-bottom: 0px; 
+}
+
+.today-weather {
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    font-size: 40px;
+    color: black;
+}
+
+.today-weather i {
+    font-size: 50px;
+    color: #FF4500;
+}
+
+.temperature {
+    font-size: 40px;
+}
+
+.card-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.weather-card {
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    width: 400px; 
+    transition: transform 0.2s;
+}
+
+.weather-card i {
+    font-size: 36px;
+    font-weight: bold; 
+    display: block; 
+    margin-bottom: 10px; 
+}
+
+.temperature {
+    font-size: 36px;
+}
+
+@media (max-width: 768px) {
+    .today-container {
+        padding: 10px; 
+    }
+
+    .weather-card {
+        width: 160px; 
+    }
+
+    .today-weather {
+        font-size: 18px;
+    }
+
+    .today-weather i {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .today-container {
+        padding: 8px; 
+        font-size: 12px; 
+    }
+
+    .weather-card {
+        width: 100%; 
+    }
+
+    .today-weather {
+        font-size: 16px;
+        padding: 5px;
+    }
+
+    .temperature {
+        font-size: 20px;
+    }
+}
+
+.toggle-button {
+    padding: 2px;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Lora", serif;
+    background: none;
+}
+
+.search-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: whitesmoke;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-button i, .toggle-button i {
+    font-size: 20px;
+}

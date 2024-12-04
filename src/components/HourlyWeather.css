@@ -1,0 +1,119 @@
+.hourly-weather {
+    text-align: center;
+    color: black;
+    padding: 15px;
+    border-radius: 12px; 
+    margin-bottom: 20px; 
+    margin-top: 20px; 
+    background-color: #2595be37;
+}
+
+.hourly-forecast {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap;
+    letter-spacing: normal;
+}
+
+.hourly-card {
+    margin: 10px;
+    padding: 10px;
+    width: 80px;
+    transition: transform 0.2s; 
+    font-size: 1.2rem;
+    letter-spacing: normal;
+
+}
+
+
+.hourly-date {
+    font-size: 1.2rem;
+    margin: 5px 0;
+}
+
+.hourly-temp {
+    font-size: 1.2rem;
+    margin: 5px 0;
+}
+
+.weather-hour-icon {
+    font-size: 1.7rem;
+    color: #FF4500; 
+}
+
+.spinner {
+    border: 8px solid #b8b8b8; 
+    border-top: 8px solid #3498db; 
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto; 
+}
+
+.error-message {
+    color: red;
+    background-color: #f8d7da; 
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px 0;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@media (max-width: 768px) {
+    .hourly-forecast {
+        justify-content: center; 
+    }
+
+    .hourly-card {
+        margin: 20px;
+        padding: 10px;
+        width: 50px;
+        transition: transform 0.2s;
+        font-size: 1rem;
+    }
+
+    .hourly-temp {
+        font-size: 1rem;
+        margin: 5px 0;
+    }
+    
+    .hourly-date {
+        font-size: 1rem;
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .hourly-weather {
+        padding: 10px;
+        font-size: 1rem;
+    } 
+
+    .hourly-forecast {
+        display: flex;
+        justify-content: center; 
+        flex-wrap: wrap;
+        font-size: 1.2rem;
+    }
+
+    .hourly-card {
+        margin: 10px;
+        padding: 5px;
+        width: 80px;
+        transition: transform 0.2s;
+        font-size: 1.2rem;
+    }
+
+    .hourly-temp {
+        font-size: 1.2rem;
+        margin: 10px 15px;
+    }
+    
+    .hourly-date {
+        font-size: 1.2rem;
+        margin: 10px 15px;
+    }
+}
