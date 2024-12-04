@@ -39,7 +39,7 @@ const HourlyWeather = ({ city, getWeatherIcon, apiKey }) => {
         };
 
         fetchHourlyWeather();
-    }, [city, apiKey]); 
+    }, [city, apiKey]);
 
     return (
         <div className="hourly-weather">

@@ -14,9 +14,9 @@ const Weather = () => {
     const [loading, setLoading] = useState(false);
     const [city, setCity] = useState('');
     const [showInput, setShowInput] = useState(false);
-    const [apiKey, setApiKey] = useState(''); // State for storing API key
+    const [apiKey, setApiKey] = useState(''); 
 
-    // Fetch the API key from the backend
+
     useEffect(() => {
         const fetchApiKey = async () => {
             try {

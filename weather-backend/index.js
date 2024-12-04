@@ -1,6 +1,6 @@
 const express = require('express');
-const cors = require('cors'); // Middleware to allow access from other domains
-require('dotenv').config(); // Allows access to .env file
+const cors = require('cors');
+require('dotenv').config();
 const app = express();
 
 const apiKey = process.env.VITE_API_KEY; // API Key from .env
@@ -10,6 +10,7 @@ const frontendUrl = process.env.FRONTEND_URL || '*'; // Default to '*' for local
 app.use(cors({
     origin: frontendUrl, // Allow requests from the frontend domain
 }));
+
 
 app.get('/api/key', (req, res) => {
     res.json({ apiKey }); // Return API key as JSON
