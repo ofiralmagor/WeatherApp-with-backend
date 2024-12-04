@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios'; // ייבוא Axios
+import axios from 'axios'; 
 import './HourlyWeather.css';
 
 const HourlyWeather = ({ city, getWeatherIcon, apiKey }) => {
@@ -17,13 +17,13 @@ const HourlyWeather = ({ city, getWeatherIcon, apiKey }) => {
                 const response = await axios.get('https://api.openweathermap.org/data/2.5/forecast', {
                     params: {
                         q: city,
-                        appid: apiKey, // שימוש ב-API Key שהועבר כפרופס
+                        appid: apiKey, // Use the API key passed down as a prop
                         units: 'metric',
                     },
                 });
                 const data = response.data;
 
-                // סינון התחזיות רק להיום
+                // Filter forecasts for today
                 const today = new Date().toISOString().split('T')[0];
                 const hourlyForecast = data.list.filter((forecast) => {
                     const forecastDate = new Date(forecast.dt * 1000).toISOString().split('T')[0];
@@ -39,7 +39,7 @@ const HourlyWeather = ({ city, getWeatherIcon, apiKey }) => {
         };
 
         fetchHourlyWeather();
-    }, [city, apiKey]); // עדכון השימוש ב-apiKey וה-city 
+    }, [city, apiKey]); 
 
     return (
         <div className="hourly-weather">
