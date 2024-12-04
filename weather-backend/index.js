@@ -1,23 +1,20 @@
 const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
+const cors = require('cors');// מידל וור שמאפשר גישה ממקורות אחרים. 
+require('dotenv').config(); //מאפשר לגשת לקובץ .env ולהשתמש במידע בו
 const app = express();
 
-const apiKey = process.env.VITE_API_KEY; // API Key from .env
+app.use(cors()); // מאפשר לכל הדומיינים לגשת לשרת כברירת מחדל.
 
-// Allow access from frontend URL
-const frontendUrl = process.env.FRONTEND_URL || '*'; // Default to '*' for local development
-app.use(cors({
-    origin: frontendUrl, // Allow requests from the frontend domain
-}));
+
+const apiKey = process.env.VITE_API_KEY; // טוען את ה API key מהקובץ .env
 
 
 app.get('/api/key', (req, res) => {
-    res.json({ apiKey }); // Return API key as JSON
+    res.json({ apiKey }); // לוקח את האובייקט { apiKey } ממיר אותו לפורמט של גייסון ושולח אותו כתגובה 
 });
 
-// Dynamic port binding
-const port = process.env.PORT || 3000; // Use Render's dynamic port or fallback to 3000
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+
+//מפעיל את השרת
+app.listen(3000, () => {
+    console.log('Server is running on http://localhost:3000');
 });

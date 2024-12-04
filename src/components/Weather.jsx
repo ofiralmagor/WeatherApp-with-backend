@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from 'axios'; // ייבוא Axios
 import WeatherSummary from './WeatherSummary.jsx';
 import WeatherForecast from './WeatherForecast.jsx';
 import HourlyWeather from './HourlyWeather.jsx';
@@ -14,15 +14,14 @@ const Weather = () => {
     const [loading, setLoading] = useState(false);
     const [city, setCity] = useState('');
     const [showInput, setShowInput] = useState(false);
-    const [apiKey, setApiKey] = useState(''); 
+    const [apiKey, setApiKey] = useState(''); // מצב חדש לאחסון ה-API Key
 
-
+    // Fetch the API key from your server
     useEffect(() => {
         const fetchApiKey = async () => {
             try {
-                const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3000'; // Default to localhost if not in production
-                const response = await axios.get(`${apiUrl}/api/key`); // Fetch the API key from backend
-                setApiKey(response.data.apiKey); // Store the API key
+                const response = await axios.get('http://localhost:3000/api/key'); // שליחת בקשה לשרת 
+                setApiKey(response.data.apiKey); // אחסון ה-API Key
             } catch (err) {
                 console.error('Error fetching API Key:', err);
                 setError('Failed to fetch API Key.');
@@ -36,10 +35,10 @@ const Weather = () => {
         setLoading(true);
         setError('');
         try {
-            const response = await axios.get('https://api.openweathermap.org/data/2.5/forecast', {
+            const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast`, {
                 params: {
                     q: cityName,
-                    appid: apiKey, // Use API Key from backend
+                    appid: apiKey, // שימוש ב-API Key שקיבלנו מהשרת
                     units: 'metric',
                 },
             });
@@ -106,11 +105,11 @@ const Weather = () => {
                 avgTemp: (totalTemp / count).toFixed(1),
                 weather,
             }))
-            .slice(1, 6); // Retrieve forecast for the next 5 days
+            .slice(1, 6); // Retrieving only forecast for the next 5 days
     };
 
     useEffect(() => {
-        if (apiKey) { // Wait for API key to load before fetching weather
+        if (apiKey) { // מחכים לטעינת ה-API Key לפני בקשת מזג האוויר
             fetchWeather('Tel Aviv');
         }
     }, [apiKey]);
