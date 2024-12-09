@@ -16,9 +16,7 @@ const Weather = () => {
     const [showInput, setShowInput] = useState(false);
     const [apiKey, setApiKey] = useState(''); 
 
-    const BASE_URL = process.env.NODE_ENV === 'production' 
-        ? 'https://weatherappnew-bh46.onrender.com' 
-        : 'http://localhost:3000'; 
+    const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 
 
     useEffect(() => {
