@@ -2,31 +2,14 @@ import { useState, useEffect } from 'react';
 import axios from 'axios'; 
 import './HourlyWeather.css';
 
-const HourlyWeather = ({ city, getWeatherIcon }) => {
+const HourlyWeather = ({ city, getWeatherIcon, apiKey }) => {
     const [hourlyData, setHourlyData] = useState([]);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    const [apiKey, setApiKey] = useState(''); // New state for the API key
 
-    // Fetch the API key from the backend
-    useEffect(() => {
-        const fetchApiKey = async () => {
-            try {
-                const response = await axios.get('/api/key'); // Relative path to the backend
-                setApiKey(response.data.apiKey);
-            } catch (err) {
-                console.error('Error fetching API Key:', err);
-                setError('Failed to fetch API Key.');
-            }
-        };
-
-        fetchApiKey();
-    }, []);
-
-    // Fetch hourly weather
     useEffect(() => {
         const fetchHourlyWeather = async () => {
-            if (!city || !apiKey) return; // Wait until both city and API key are available
+            if (!city) return;
             setLoading(true);
             setError('');
 
@@ -34,7 +17,7 @@ const HourlyWeather = ({ city, getWeatherIcon }) => {
                 const response = await axios.get('https://api.openweathermap.org/data/2.5/forecast', {
                     params: {
                         q: city,
-                        appid: apiKey, // Use the fetched API key
+                        appid: apiKey, // Use the API key passed down as a prop
                         units: 'metric',
                     },
                 });
@@ -56,7 +39,7 @@ const HourlyWeather = ({ city, getWeatherIcon }) => {
         };
 
         fetchHourlyWeather();
-    }, [city, apiKey]); // Re-run when city or apiKey changes
+    }, [city, apiKey]); 
 
     return (
         <div className="hourly-weather">
