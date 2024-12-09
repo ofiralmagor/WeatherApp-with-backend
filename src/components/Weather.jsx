@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios'; // ייבוא Axios
+import axios from 'axios'; 
 import WeatherSummary from './WeatherSummary.jsx';
 import WeatherForecast from './WeatherForecast.jsx';
 import HourlyWeather from './HourlyWeather.jsx';
@@ -14,14 +14,14 @@ const Weather = () => {
     const [loading, setLoading] = useState(false);
     const [city, setCity] = useState('');
     const [showInput, setShowInput] = useState(false);
-    const [apiKey, setApiKey] = useState(''); // מצב חדש לאחסון ה-API Key
+    const [apiKey, setApiKey] = useState(''); 
 
     // Fetch the API key from your server
     useEffect(() => {
         const fetchApiKey = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/api/key'); // שליחת בקשה לשרת 
-                setApiKey(response.data.apiKey); // אחסון ה-API Key
+                const response = await axios.get('/api/key'); // Relative path to backend
+                setApiKey(response.data.apiKey);
             } catch (err) {
                 console.error('Error fetching API Key:', err);
                 setError('Failed to fetch API Key.');
@@ -38,7 +38,7 @@ const Weather = () => {
             const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast`, {
                 params: {
                     q: cityName,
-                    appid: apiKey, // שימוש ב-API Key שקיבלנו מהשרת
+                    appid: apiKey, 
                     units: 'metric',
                 },
             });
@@ -105,11 +105,11 @@ const Weather = () => {
                 avgTemp: (totalTemp / count).toFixed(1),
                 weather,
             }))
-            .slice(1, 6); // Retrieving only forecast for the next 5 days
+            .slice(1, 6); 
     };
 
     useEffect(() => {
-        if (apiKey) { // מחכים לטעינת ה-API Key לפני בקשת מזג האוויר
+        if (apiKey) { 
             fetchWeather('Tel Aviv');
         }
     }, [apiKey]);
@@ -138,7 +138,7 @@ const Weather = () => {
             {weatherData && (
                 <>
                     <WeatherSummary weatherData={weatherData} getWeatherIcon={getWeatherIcon} />
-                    <HourlyWeather city={city} getWeatherIcon={getWeatherIcon} apiKey={apiKey} />
+                    <HourlyWeather city={city} getWeatherIcon={getWeatherIcon} /> {/* Removed apiKey prop */}
                     <WeatherForecast dailyAverages={getDailyAverages(weatherData)} getWeatherIcon={getWeatherIcon} />
                 </>
             )}

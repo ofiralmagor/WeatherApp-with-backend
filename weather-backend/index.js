@@ -1,20 +1,31 @@
 const express = require('express');
-const cors = require('cors');// מידל וור שמאפשר גישה ממקורות אחרים. 
-require('dotenv').config(); //מאפשר לגשת לקובץ .env ולהשתמש במידע בו
+const cors = require('cors');
+const path = require('path');
+require('dotenv').config();
+
 const app = express();
 
-app.use(cors()); // מאפשר לכל הדומיינים לגשת לשרת כברירת מחדל.
+// Enable CORS
+app.use(cors());
 
+// Load API Key from .env
+const apiKey = process.env.VITE_API_KEY;
 
-const apiKey = process.env.VITE_API_KEY; // טוען את ה API key מהקובץ .env
-
-
+// API Route
 app.get('/api/key', (req, res) => {
-    res.json({ apiKey }); // לוקח את האובייקט { apiKey } ממיר אותו לפורמט של גייסון ושולח אותו כתגובה 
+    res.json({ apiKey }); // Send the API key as JSON
 });
 
+// Serve React Static Files
+app.use(express.static(path.join(__dirname, 'dist')));
 
-//מפעיל את השרת
-app.listen(3000, () => {
-    console.log('Server is running on http://localhost:3000');
+// Handle React's Client-Side Routing
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+// Start Server
+const PORT = process.env.PORT || 3000; // Use Render's PORT variable if available
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
