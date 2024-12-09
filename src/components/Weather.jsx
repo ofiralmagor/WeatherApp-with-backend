@@ -14,10 +14,10 @@ const Weather = () => {
     const [loading, setLoading] = useState(false);
     const [city, setCity] = useState('');
     const [showInput, setShowInput] = useState(false);
-    const [apiKey, setApiKey] = useState(''); // מצב חדש לאחסון ה-API Key
+    const [apiKey, setApiKey] = useState(''); 
 
     const BASE_URL = process.env.NODE_ENV === 'production' 
-        ? '' // In production, use the same domain
+        ? 'https://weatherappnew-bh46.onrender.com' 
         : 'http://localhost:3000'; 
 
 
