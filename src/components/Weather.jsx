@@ -16,22 +16,21 @@ const Weather = () => {
     const [showInput, setShowInput] = useState(false);
     const [apiKey, setApiKey] = useState(''); 
 
-    const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
-
-
     useEffect(() => {
         const fetchApiKey = async () => {
             try {
-                const response = await axios.get(`${BASE_URL}/api/key`);  // Send request to server
-                setApiKey(response.data.apiKey); // Store the API key
+                const response = await axios.get('/api/key'); 
+                setApiKey(response.data.apiKey);
             } catch (err) {
                 console.error('Error fetching API Key:', err);
                 setError('Failed to fetch API Key.');
             }
         };
-
+    
         fetchApiKey();
-    }, [BASE_URL]);
+    }, []);
+    
+    
 
     const fetchWeather = async (cityName) => {
         setLoading(true);
@@ -40,7 +39,7 @@ const Weather = () => {
             const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast`, {
                 params: {
                     q: cityName,
-                    appid: apiKey, // Use API key from the server
+                    appid: apiKey, 
                     units: 'metric',
                 },
             });
@@ -111,7 +110,7 @@ const Weather = () => {
     };
 
     useEffect(() => {
-        if (apiKey) { // Wait for the API key to be loaded before fetching weather
+        if (apiKey) { // Wait for API Key before requesting weather
             fetchWeather('Tel Aviv');
         }
     }, [apiKey]);
